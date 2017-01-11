@@ -1,5 +1,5 @@
 
-PROJECTS = tabfx calc
+PROJECTS = abfx calc
 
 all:
 	for x in $(PROJECTS) ; do (cd $$x && make) ; done;
