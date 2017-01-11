@@ -1,4 +1,3 @@
-
 with Ada.Strings.Unbounded; use Ada.Strings.Unbounded;
 
 with X11.Font; use X11.Font;

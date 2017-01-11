@@ -168,11 +168,11 @@ package body Calc is
       Add_Click_Listener(quit_button, Quit_Listener'access);
       Add(top_row, quit_button);
 
-      Set_Text(ce_button, "CE");
+      Set_Text(ce_button, "清除");
       Add_Click_Listener(ce_button, Clear_Listener'access);
       Add(top_row, ce_button);
 
-      Set_Text(ac_button, "AC");
+      Set_Text(ac_button, "重設");
       Add_Click_Listener(ac_button, All_Clear_Listener'access);
       Add(top_row, ac_button);
 

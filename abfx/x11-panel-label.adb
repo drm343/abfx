@@ -1,4 +1,3 @@
-
 package body X11.Panel.Label is
 
    procedure Compute_Size(label : in out Label_Type'class);

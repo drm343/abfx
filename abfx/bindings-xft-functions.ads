@@ -53,6 +53,16 @@ package Bindings.XFT.Functions is
       length   : int);
    pragma Import(C, XftDrawString8, "XftDrawString8");
 
+   procedure XftDrawStringUtf8(
+      drawable : XftDraw_Pointer;
+      color    : XftColor_Pointer;
+      font     : XftFont_Pointer;
+      x        : int;
+      y        : int;
+      str      : chars_ptr;
+      length   : int);
+   pragma Import(C, XftDrawStringUtf8, "XftDrawStringUtf8");
+
    procedure XftDrawDestroy(
       drawable : XftDraw_Pointer);
    pragma Import(C, XftDrawDestroy, "XftDrawDestroy");

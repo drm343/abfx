@@ -76,7 +76,7 @@ package body X11.Graphics is
          rcolor'unrestricted_access,
          color'unrestricted_access);
 
-      XftDrawString8(xd, color'unrestricted_access, Get_Font_Data(g.font),
+      XftDrawStringUTF8(xd, color'unrestricted_access, Get_Font_Data(g.font),
          int(x), int(y), c_str, int(str'length));
 
       XftColorFree(display, visual, colormap, color'unrestricted_access);

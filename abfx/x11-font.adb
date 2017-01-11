@@ -11,7 +11,7 @@ with Bindings.XRender.Types; use Bindings.XRender.Types;
 
 package body X11.Font is
 
-   Default_Font : constant String := "FreeSans-12:bold";
+   Default_Font : constant String := "NotoSansCJKtc-16:Regular";
 
    procedure Free is new Ada.Unchecked_Deallocation(
       Font_Node, Font_Node_Pointer);
