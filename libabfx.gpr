@@ -1,0 +1,15 @@
+project Libabfx is
+
+   for Object_Dir use "obj";
+   for Library_Name use "abfx";
+   for Library_Dir use "lib/";
+   for Library_Ali_Dir use "lib/";
+
+   package Ide is
+      for Vcs_Kind use "Auto";
+   end Ide;
+
+   for Source_Dirs use ("abfx/**");
+
+end Libabfx;
+
