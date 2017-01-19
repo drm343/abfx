@@ -53,12 +53,45 @@ package body X11.Font is
    end Adjust;
 
    function Get_Width(font : Font_Type; str : String) return Natural is
+       function strlenUTF8(item: string) return Integer is
+           source_char : Integer;
+           skip : Integer := 0;
+           count : Integer := 0;
+       begin
+           for i in Integer range 1 .. item'Length loop
+               source_char := Character'Pos(item(i));
+               if skip >= 1 then
+                   skip := skip - 1;
+                   goto Continue;
+               end if;
+
+               if source_char >= 2#1111_1100# then
+                   skip := 5;
+               elsif source_char >= 2#1111_1000# then
+                   skip := 4;
+               elsif source_char >= 2#11110000# then
+                   skip := 3;
+               elsif source_char >= 2#11100000# then
+                   skip := 2;
+               elsif source_char >= 2#11000000# then
+                   skip := 1;
+               elsif source_char < 2#10000000# then
+                   skip := 0;
+                   count := count - 1;
+               end if;
+               count := count + 2;
+               <<Continue>>
+           end loop;
+
+           return count;
+       end strlenUTF8;
+
       c_str   : chars_ptr;
       extents : aliased XGlyphInfo_Type;
    begin
       Prepare(font.node);
       c_str := New_String(str);
-      XftTextExtents8(display, font.node.font, c_str, int(str'length),
+      XftTextExtents8(display, font.node.font, c_str, int(strlenUTF8(str)),
          extents'unrestricted_access);
       Free(c_str);
       return Natural(extents.width);
