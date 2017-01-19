@@ -54,11 +54,15 @@ package X11 is
    procedure Run;
    procedure Stop;
 
-private
-
    type Timer_Event_Handler_Type is access
       procedure(obj : in out Object_Type'class);
 
+   procedure Add_Timer(
+      handler : in Timer_Event_Handler_Type;
+      object  : in out Object_Type'class;
+      timeout : in Positive);
+
+private
    delete_atom    : Bindings.X11.Types.Atom_Type;
    protocols_atom : Bindings.X11.Types.Atom_Type;
 
@@ -68,11 +72,6 @@ private
 
    procedure Initialize(obj : in out Object_Type);
    procedure Finalize(obj : in out Object_Type);
-
-   procedure Add_Timer(
-      handler : in Timer_Event_Handler_Type;
-      object  : in out Object_Type'class;
-      timeout : in Positive);
 
    procedure Remove_Timer(
       handler : in Timer_Event_Handler_Type;
