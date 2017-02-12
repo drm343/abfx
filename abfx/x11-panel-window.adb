@@ -11,8 +11,8 @@ package body X11.Panel.Window is
       Initialize(Panel_Type(win));
 
       XChangeProperty(display, win.id, protocols_atom,
-         XA_ATOM, 32, PropModeReplace,
-         delete_atom'unrestricted_access, 1);
+                      XA_ATOM, 32, PropModeReplace,
+                      delete_atom'unrestricted_access, 1);
 
    end Initialize;
 
@@ -27,6 +27,7 @@ package body X11.Panel.Window is
       win.title := To_Unbounded_String(title);
       c_str := New_String(title);
       XStoreName(display, win.id, c_str);
+      Xutf8SetWMProperties(display, win.id, c_str);
       Free(c_str);
    end Set_Title;
 
