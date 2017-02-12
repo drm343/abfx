@@ -12,6 +12,7 @@ with X11.Panel.Layout.Horizontal;
 with X11.Panel.Layout.Vertical;
 with X11.Panel.Layout.Grid;
 with X11.Collections.List;
+with X11.Color; use X11.Color;
 
 package body MyTime is
    package Time renames Ada.Calendar;
@@ -37,6 +38,7 @@ package body MyTime is
 
       -- Set up the output display
       Set_Text(output, Time.Formatting.Image(Time.Clock, Time_Zone => time_offset));
+      Set_Background(output, White_Color);
       Set_Editable(output, false);
       Set_Alignment(output, Center_Right);
       Add_Timer(Get_Current_Date'Access, output, 1000);
